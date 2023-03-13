@@ -32,7 +32,7 @@ function App() {
 
       }}></button>
 
-      {showTimer && <Timer seconds={seconds} hours={hours} minutes={minutes} />}
+      {showTimer || <Timer seconds={seconds} hours={hours} minutes={minutes} />}
 
     </div>
   );
