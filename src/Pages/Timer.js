@@ -1,27 +1,44 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Timer(props) {
-  var totalTime = 0;
-  const totalTimeCalculator = () => {
-    // console.log(((props.hours * 60 * 60) + (props.minutes * 60) + (props.seconds)) * 1000)
-    return ((props.hours * 60 * 60) + (props.minutes * 60) + (props.seconds) * 1000);
-  }
+	const [seconds, setSeconds] = useState(props.seconds);
+	const [minutes, setMinutes] = useState(props.minutes);
+	const [hours, setHours] = useState(props.hours);
 
-  useEffect(() => {
-    totalTime = totalTimeCalculator();
+	var totalTime = 0;
+	const totalTimeCalculator = () => {
+		console.log(((props.hours * 60 * 60) + (props.minutes * 60) + (props.seconds)) * 1000)
+		return ((hours * 60 * 60) + (minutes * 60) + (seconds) * 1000);
+	}
 
-    setTimeout(() => {
-      props.setShowTimer(false);
-    }, totalTime)
-  }, []);
+	/*
+  
+		useEffect(() => {
+		  totalTime = totalTimeCalculator();
+  
+		  setTimeout(() => {
+			props.setShowTimer(false);
+		  }, totalTime)
+		}, []);
 
-  return (
-    <div>
-      <button onClick={() => {props.setShowTimer(false)}}>Close</button>
-      <h1>{props.hours}</h1>
-      <h1>{props.minutes}</h1>
-      <h1>{props.seconds}</h1>
-      
-    </div>
-  )
+
+		// Reference
+		setInterval(function() {
+			console.log('one');
+			setTimeout(function() {
+				console.log('two');
+			},2500);
+		}, 5000);
+	  
+	*/
+
+	return (
+		<div>
+			<button onClick={() => { props.setShowTimer(false) }}>Close</button>
+			<h1>{hours}</h1>
+			<h1>{minutes}</h1>
+			<h1>{seconds}</h1>
+
+		</div>
+	)
 }
