@@ -31,11 +31,20 @@ export default function Form() {
                 )} type="number" id="seconds" name="seconds" />
                 <br />
 
-                <button type='submit' onClick={(e) => {
+                <button type='submit' style={
+                    {
+                        height: '1rem',
+                        width: '2rem'
+                    }
+                } onClick={(e) => {
                     e.preventDefault();
-                    console.log(seconds);
-                    console.log(minutes);
-                    console.log(hours);
+                    // console.log(seconds);
+                    // console.log(minutes);
+                    // console.log(hours);
+
+                    localStorage.setItem("seconds" , seconds)
+                    localStorage.setItem("minutes" , minutes)
+                    localStorage.setItem("hours" , hours)
                 }}></button>
             </form>
 
