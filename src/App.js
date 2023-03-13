@@ -40,7 +40,7 @@ function App() {
         </div>
       }
 
-      {showTimer && <Timer hours={hours} minutes={minutes} seconds={seconds} showTimer={showTimer} />}
+      {showTimer && <Timer hours={hours} minutes={minutes} seconds={seconds} showTimer={showTimer} setShowTimer={setShowTimer} />}
 
     </div>
   );
