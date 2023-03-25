@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
 export default function Timer(props) {
-	const [seconds, setSeconds] = useState(parseInt(props.seconds));
-	const [minutes, setMinutes] = useState(parseInt(props.minutes));
-	const [hours, setHours] = useState(parseInt(props.hours));
+	const [seconds, setSeconds] = useState((props.seconds));
+	const [minutes, setMinutes] = useState((props.minutes));
+	const [hours, setHours] = useState((props.hours));
 
 	const [timeup, setTimeup] = useState(false);
 
-	const [totalTime, setTotalTime] = useState((parseInt(props.seconds) + (60 * parseInt(props.minutes)) + (60 * 60 * parseInt(props.hours))));
+	const [totalTime, setTotalTime] = useState(((props.seconds) + (60 * (props.minutes)) + (60 * 60 * (props.hours))));
 
 	const convertTime = () => {
 		console.log('object')
-		setMinutes(minutes + parseInt(seconds / 60));
+		setMinutes(minutes + (seconds / 60));
 		setSeconds(seconds % 60);
 
-		setHours(hours + parseInt(minutes / 60));
+		setHours(hours + (minutes / 60));
 		setMinutes(minutes % 60);
 	}
 
@@ -42,7 +42,7 @@ export default function Timer(props) {
 				}
 			}
 
-			if (seconds == 0) {
+			if (seconds === 0) {
 				if (minutes) {
 					// minutes -= 1;
 					setMinutes(mins => mins - 1);
