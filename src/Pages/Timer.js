@@ -1,36 +1,17 @@
 import React, { useEffect, useState } from 'react'
 
 export default function Timer(props) {
-	const [seconds, setSeconds] = useState(props.seconds);
-	const [minutes, setMinutes] = useState(props.minutes);
-	const [hours, setHours] = useState(props.hours);
+	const [seconds, setSeconds] = useState(parseInt(props.seconds));
+	const [minutes, setMinutes] = useState(parseInt(props.minutes));
+	const [hours, setHours] = useState(parseInt(props.hours));
 
-	var totalTime = 0;
-	const totalTimeCalculator = () => {
-		console.log(((props.hours * 60 * 60) + (props.minutes * 60) + (props.seconds)) * 1000)
-		return ((hours * 60 * 60) + (minutes * 60) + (seconds) * 1000);
-	}
+	const convertTime = () => {
+		setMinutes(minutes + parseInt(seconds / 60));
+		setSeconds(seconds % 60);
 
-	/*
-  
-		useEffect(() => {
-		  totalTime = totalTimeCalculator();
-  
-		  setTimeout(() => {
-			props.setShowTimer(false);
-		  }, totalTime)
-		}, []);
-
-
-		// Reference
-		setInterval(function() {
-			console.log('one');
-			setTimeout(function() {
-				console.log('two');
-			},2500);
-		}, 5000);
-	  
-	*/
+		setHours(hours + parseInt(minutes / 60));
+		setMinutes(minutes % 60);
+    }
 
 	return (
 		<div>
