@@ -5,6 +5,8 @@ export default function Timer(props) {
 	const [minutes, setMinutes] = useState(parseInt(props.minutes));
 	const [hours, setHours] = useState(parseInt(props.hours));
 
+	const [timeup, setTimeup] = useState(false);
+
 	const [totalTime, setTotalTime] = useState((parseInt(props.seconds) + (60 * parseInt(props.minutes)) + (60 * 60 * parseInt(props.hours))));
 
 	const convertTime = () => {
@@ -17,9 +19,10 @@ export default function Timer(props) {
 	}
 
 	useEffect(() => {
-		if(!totalTime){
+		if (!totalTime) {
 			console.log("Done Done Done!!!!")
-			props.setShowTimer(false);
+			setTimeup(true);
+			// props.setShowTimer(false);
 			return;
 		}
 
@@ -29,7 +32,7 @@ export default function Timer(props) {
 		const countDown = setInterval(() => {
 			setTotalTime(time => time - 1);
 			setSeconds(secs => secs - 1);
-			
+
 			if (minutes === 0) {
 				if (hours) {
 					// hours -= 1;
@@ -38,7 +41,7 @@ export default function Timer(props) {
 					setMinutes(mins => mins + 60);
 				}
 			}
-			
+
 			if (seconds == 0) {
 				if (minutes) {
 					// minutes -= 1;
@@ -47,7 +50,7 @@ export default function Timer(props) {
 					setSeconds(secs => secs + 60);
 				}
 			}
-			
+
 			// seconds -= 1;
 		}, 1000);
 
@@ -56,10 +59,23 @@ export default function Timer(props) {
 
 	return (
 		<div>
-			<button onClick={() => { props.setShowTimer(false) }}>Close</button>
-			<h1>{hours}</h1>
-			<h1>{minutes}</h1>
-			<h1>{seconds}</h1>
+			{
+				timeup ?
+				
+					<div className="timeup">
+						<h1>Timeup! Over</h1>
+						<button onClick={() => { props.setShowTimer(false) }}>Back</button>
+					</div>
+					
+					:
+					
+					<div className="running">
+						<h1>{hours}</h1>
+						<h1>{minutes}</h1>
+						<h1>{seconds}</h1>
+						<button onClick={() => { props.setShowTimer(false) }}>Close</button>
+					</div>
+			}
 
 		</div>
 	)
