@@ -5,6 +5,8 @@ export default function Timer(props) {
 	const [minutes, setMinutes] = useState(parseInt(props.minutes));
 	const [hours, setHours] = useState(parseInt(props.hours));
 
+	const [totalTime, setTotalTime] = useState((parseInt(props.seconds) + (60 * parseInt(props.minutes)) + (60 * 60 * parseInt(props.hours))));
+
 	const convertTime = () => {
 		console.log('object')
 		setMinutes(minutes + parseInt(seconds / 60));
@@ -12,42 +14,45 @@ export default function Timer(props) {
 
 		setHours(hours + parseInt(minutes / 60));
 		setMinutes(minutes % 60);
-    }
-
-	const countDown = () => setInterval(timeChange  , 1000);
-
-	function timeChange() {
-		if (seconds === 0 && minutes === 0 && hours === 0) {
-			props.setShowTimer(false);
-            clearInterval(countDown);
-        }
-        
-        if (minutes === -1) {
-            if (hours) {
-                // hours -= 1;
-				setHours(prevHours => prevHours - 1);
-                // minutes += 60;
-				setMinutes(prevMinutes => prevMinutes + 60);
-            }
-        }
-		
-        if (seconds == -1) {
-			if (minutes) {
-				// minutes -= 1;
-				setMinutes(prevMinutes => prevMinutes - 1);
-                // seconds += 60;
-				setSeconds(prevSeconds => prevSeconds + 60);
-            }
-        }
-    
-		setSeconds(prevSeconds => prevSeconds - 1);
 	}
 
-
 	useEffect(() => {
+		if(!totalTime){
+			console.log("Done Done Done!!!!")
+			props.setShowTimer(false);
+			return;
+		}
+
+		console.log(totalTime)
 		convertTime();
-		countDown();
-	}, []);
+
+		const countDown = setInterval(() => {
+			setTotalTime(time => time - 1);
+			setSeconds(secs => secs - 1);
+			
+			if (minutes === 0) {
+				if (hours) {
+					// hours -= 1;
+					setHours(hrs => hrs - 1);
+					// minutes += 60;
+					setMinutes(mins => mins + 60);
+				}
+			}
+			
+			if (seconds == 0) {
+				if (minutes) {
+					// minutes -= 1;
+					setMinutes(mins => mins - 1);
+					// seconds += 60;
+					setSeconds(secs => secs + 60);
+				}
+			}
+			
+			// seconds -= 1;
+		}, 1000);
+
+		return () => clearInterval(countDown);
+	}, [totalTime]);
 
 	return (
 		<div>
