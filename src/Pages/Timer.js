@@ -62,9 +62,10 @@ export default function Timer(props) {
 			{
 				timeup ?
 				
-					<div className="timeup">
-						<h1>Timeup! Over</h1>
-						<button onClick={() => { props.setShowTimer(false) }}>Back</button>
+					<div className="timeup container">
+						<h1 className='title'>Time's Over!</h1>
+						<button onClick={() => { props.setShowTimer(false) }} className="button"><span>Back</span></button>
+						{/* <button >Back</button> */}
 					</div>
 					
 					:
@@ -73,7 +74,7 @@ export default function Timer(props) {
 						<h1>{hours}</h1>
 						<h1>{minutes}</h1>
 						<h1>{seconds}</h1>
-						<button onClick={() => { props.setShowTimer(false) }}>Close</button>
+						<button className="button" onClick={() => { props.setShowTimer(false)}}><span>Close</span></button>
 					</div>
 			}
 

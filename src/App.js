@@ -18,7 +18,7 @@ function App() {
         <div className="setter">
           <Form seconds={seconds} minutes={minutes} hours={hours} setMinutes={setMinutes} setHours={setHours} setSeconds={setSeconds} />
 
-          <button type='submit' onClick={(e) => {
+          <button type='submit'className="button"  onClick={(e) => {
             e.preventDefault();
             // console.log(seconds);
             // console.log(minutes);
@@ -29,7 +29,7 @@ function App() {
             localStorage.setItem("hours", hours)
             setShowTimer(true)
 
-          }}> Start </button>
+          }}> <span>Start</span> </button>
 
           <div className="displayTime">
             <h1>{hours}</h1>
