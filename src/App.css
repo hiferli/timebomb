@@ -19,8 +19,13 @@
 
 .title {
     font-size: 50px;
-    ;
 }
+
+
+.running {
+    font-size: 25px;
+}
+
 
 .button {
     vertical-align: middle;

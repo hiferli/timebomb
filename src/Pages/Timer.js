@@ -70,10 +70,8 @@ export default function Timer(props) {
 					
 					:
 					
-					<div className="running">
-						<h1>{hours}</h1>
-						<h1>{minutes}</h1>
-						<h1>{seconds}</h1>
+					<div className="container running">
+						<h1>{hours} Hours : {minutes} Minutes : {seconds} Seconds</h1>
 						<button className="button" onClick={() => { props.setShowTimer(false)}}><span>Close</span></button>
 					</div>
 			}
